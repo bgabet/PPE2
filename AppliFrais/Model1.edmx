@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="applifraisModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="applifraisModelStoreContainer">
+          <EntitySet Name="etat" EntityType="applifraisModel.Store.etat" store:Type="Tables" Schema="applifrais" />
+          <EntitySet Name="fichefrais" EntityType="applifraisModel.Store.fichefrais" store:Type="Tables" Schema="applifrais" />
+          <EntitySet Name="fraisforfait" EntityType="applifraisModel.Store.fraisforfait" store:Type="Tables" Schema="applifrais" />
+          <EntitySet Name="lignefraisforfait" EntityType="applifraisModel.Store.lignefraisforfait" store:Type="Tables" Schema="applifrais" />
+          <EntitySet Name="lignefraishorsforfait" EntityType="applifraisModel.Store.lignefraishorsforfait" store:Type="Tables" Schema="applifrais" />
+          <EntitySet Name="visiteur" EntityType="applifraisModel.Store.visiteur" store:Type="Tables" Schema="applifrais" />
+        </EntityContainer>
+        <EntityType Name="etat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="libelle" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="fichefrais">
+          <Key>
+            <PropertyRef Name="idVisiteur" />
+            <PropertyRef Name="mois" />
+          </Key>
+          <Property Name="idVisiteur" Type="int" Nullable="false" />
+          <Property Name="mois" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="nbJustificatifs" Type="int" />
+          <Property Name="montantValide" Type="double" />
+          <Property Name="dateModif" Type="date" />
+          <Property Name="idEtat" Type="int" />
+          <Property Name="manqueJustificatif" Type="int" />
+        </EntityType>
+        <EntityType Name="fraisforfait">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="libelle" Type="varchar" MaxLength="50" />
+          <Property Name="montant" Type="double" />
+        </EntityType>
+        <EntityType Name="lignefraisforfait">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idVisiteur" Type="int" Nullable="false" />
+          <Property Name="mois" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="idFraisForfait" Type="int" Nullable="false" />
+          <Property Name="quantite" Type="int" />
+          <Property Name="idEtat" Type="int" />
+          <Property Name="dateOperation" Type="date" />
+        </EntityType>
+        <EntityType Name="lignefraishorsforfait">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idVisiteur" Type="int" Nullable="false" />
+          <Property Name="mois" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="libelle" Type="varchar" MaxLength="100" />
+          <Property Name="date" Type="date" />
+          <Property Name="montant" Type="double" />
+          <Property Name="idEtat" Type="int" />
+          <Property Name="dateOperation" Type="date" />
+        </EntityType>
+        <EntityType Name="visiteur">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="varchar" MaxLength="50" />
+          <Property Name="prenom" Type="varchar" MaxLength="50" />
+          <Property Name="login" Type="varchar" MaxLength="50" />
+          <Property Name="mdp" Type="varchar" MaxLength="50" />
+          <Property Name="adresse" Type="varchar" MaxLength="50" />
+          <Property Name="cp" Type="varchar" MaxLength="50" />
+          <Property Name="ville" Type="varchar" MaxLength="50" />
+          <Property Name="dateEmbauche" Type="date" />
+          <Property Name="comptable" Type="tinyint" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="applifraisModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="applifraisEntities">
+          <EntitySet Name="etat" EntityType="applifraisModel.etat" />
+          <EntitySet Name="fichefrais" EntityType="applifraisModel.fichefrais" />
+          <EntitySet Name="fraisforfait" EntityType="applifraisModel.fraisforfait" />
+          <EntitySet Name="lignefraisforfait" EntityType="applifraisModel.lignefraisforfait" />
+          <EntitySet Name="lignefraishorsforfait" EntityType="applifraisModel.lignefraishorsforfait" />
+          <EntitySet Name="visiteur" EntityType="applifraisModel.visiteur" />
+        </EntityContainer>
+        <EntityType Name="etat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="libelle" Type="String" />
+        </EntityType>
+        <EntityType Name="fichefrais">
+          <Key>
+            <PropertyRef Name="idVisiteur" />
+            <PropertyRef Name="mois" />
+          </Key>
+          <Property Name="idVisiteur" Type="Int32" Nullable="false" />
+          <Property Name="mois" Type="String" Nullable="false" />
+          <Property Name="nbJustificatifs" Type="Int32" />
+          <Property Name="montantValide" Type="Double" />
+          <Property Name="dateModif" Type="DateTime" />
+          <Property Name="idEtat" Type="Int32" />
+          <Property Name="manqueJustificatif" Type="Int32" Nullable="true" /></EntityType>
+        <EntityType Name="fraisforfait">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="libelle" Type="String" />
+          <Property Name="montant" Type="Double" />
+        </EntityType>
+        <EntityType Name="lignefraisforfait">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="idVisiteur" Type="Int32" Nullable="false" />
+          <Property Name="mois" Type="String" Nullable="false" />
+          <Property Name="idFraisForfait" Type="Int32" Nullable="false" />
+          <Property Name="quantite" Type="Int32" />
+          <Property Name="idEtat" Type="Int32" />
+          <Property Name="dateOperation" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="lignefraishorsforfait">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="idVisiteur" Type="Int32" Nullable="false" />
+          <Property Name="mois" Type="String" Nullable="false" />
+          <Property Name="libelle" Type="String" />
+          <Property Name="date" Type="DateTime" />
+          <Property Name="montant" Type="Double" />
+          <Property Name="idEtat" Type="Int32" />
+          <Property Name="dateOperation" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="visiteur">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nom" Type="String" />
+          <Property Name="prenom" Type="String" />
+          <Property Name="login" Type="String" />
+          <Property Name="mdp" Type="String" />
+          <Property Name="adresse" Type="String" />
+          <Property Name="cp" Type="String" />
+          <Property Name="ville" Type="String" />
+          <Property Name="dateEmbauche" Type="DateTime" />
+          <Property Name="comptable" Type="SByte" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="applifraisModelStoreContainer" CdmEntityContainer="applifraisEntities">
+          <EntitySetMapping Name="etat">
+            <EntityTypeMapping TypeName="IsTypeOf(applifraisModel.etat)">
+              <MappingFragment StoreEntitySet="etat">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fichefrais">
+            <EntityTypeMapping TypeName="IsTypeOf(applifraisModel.fichefrais)">
+              <MappingFragment StoreEntitySet="fichefrais">
+                <ScalarProperty Name="manqueJustificatif" ColumnName="manqueJustificatif" />
+                <ScalarProperty Name="idVisiteur" ColumnName="idVisiteur" />
+                <ScalarProperty Name="mois" ColumnName="mois" />
+                <ScalarProperty Name="nbJustificatifs" ColumnName="nbJustificatifs" />
+                <ScalarProperty Name="montantValide" ColumnName="montantValide" />
+                <ScalarProperty Name="dateModif" ColumnName="dateModif" />
+                <ScalarProperty Name="idEtat" ColumnName="idEtat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fraisforfait">
+            <EntityTypeMapping TypeName="IsTypeOf(applifraisModel.fraisforfait)">
+              <MappingFragment StoreEntitySet="fraisforfait">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="montant" ColumnName="montant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lignefraisforfait">
+            <EntityTypeMapping TypeName="IsTypeOf(applifraisModel.lignefraisforfait)">
+              <MappingFragment StoreEntitySet="lignefraisforfait">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idVisiteur" ColumnName="idVisiteur" />
+                <ScalarProperty Name="mois" ColumnName="mois" />
+                <ScalarProperty Name="idFraisForfait" ColumnName="idFraisForfait" />
+                <ScalarProperty Name="quantite" ColumnName="quantite" />
+                <ScalarProperty Name="idEtat" ColumnName="idEtat" />
+                <ScalarProperty Name="dateOperation" ColumnName="dateOperation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lignefraishorsforfait">
+            <EntityTypeMapping TypeName="IsTypeOf(applifraisModel.lignefraishorsforfait)">
+              <MappingFragment StoreEntitySet="lignefraishorsforfait">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idVisiteur" ColumnName="idVisiteur" />
+                <ScalarProperty Name="mois" ColumnName="mois" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="montant" ColumnName="montant" />
+                <ScalarProperty Name="idEtat" ColumnName="idEtat" />
+                <ScalarProperty Name="dateOperation" ColumnName="dateOperation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="visiteur">
+            <EntityTypeMapping TypeName="IsTypeOf(applifraisModel.visiteur)">
+              <MappingFragment StoreEntitySet="visiteur">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="mdp" ColumnName="mdp" />
+                <ScalarProperty Name="adresse" ColumnName="adresse" />
+                <ScalarProperty Name="cp" ColumnName="cp" />
+                <ScalarProperty Name="ville" ColumnName="ville" />
+                <ScalarProperty Name="dateEmbauche" ColumnName="dateEmbauche" />
+                <ScalarProperty Name="comptable" ColumnName="comptable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="applifraisModel.etat" Width="1.5" PointX="0.75" PointY="0.75" Height="1.4033821614583331" IsExpanded="true" />
+        <EntityTypeShape EntityType="applifraisModel.fichefrais" Width="1.5" PointX="2.75" PointY="0.75" Height="2.172587890625" IsExpanded="true" />
+        <EntityTypeShape EntityType="applifraisModel.fraisforfait" Width="1.5" PointX="0.75" PointY="3.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="applifraisModel.lignefraisforfait" Width="1.5" PointX="2.75" PointY="3.75" Height="2.364889322916667" IsExpanded="true" />
+        <EntityTypeShape EntityType="applifraisModel.lignefraishorsforfait" Width="1.5" PointX="4.75" PointY="0.75" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="applifraisModel.visiteur" Width="1.5" PointX="4.75" PointY="4.75" Height="2.9417936197916674" IsExpanded="true" /></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
